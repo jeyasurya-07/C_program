@@ -5,8 +5,8 @@ int main()
     int x=0,y=0;
     printf("Enter the number:");
     scanf("%d",&x);
-    y=x+2;
+    y=x/100;
     
     printf("Result=%d",y);
 }
-//adding 2 to ip
+//get first digit of ip of 3 digit number

@@ -2,11 +2,14 @@
 
 int main()
 {
-    int x=0,y=0;
+    int x=0,y=0,z=0;
     printf("Enter the number:");
     scanf("%d",&x);
-    y=x+2;
+    z=(x%10);
+    y=z*10;
+    x=(x/10);
+    y=y+x;
     
     printf("Result=%d",y);
 }
-//adding 2 to ip
+//reverse 2 digit number ip

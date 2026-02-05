@@ -2,11 +2,12 @@
 
 int main()
 {
-    int x=0,y=0;
+    int x=0,y=0,z=0;
     printf("Enter the number:");
     scanf("%d",&x);
-    y=x+2;
+    x=(x/10);
+    y=x*10;
     
     printf("Result=%d",y);
 }
-//adding 2 to ip
+//remove last digit and add 0 at the end of ip

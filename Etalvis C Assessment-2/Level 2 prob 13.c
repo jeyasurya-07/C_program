@@ -1,3 +1,4 @@
+//get a 3 dig num if both dig 1 and dig 0 are same print 1 else 0
 #include <stdio.h>
 
 int main()

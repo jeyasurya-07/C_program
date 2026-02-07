@@ -1,3 +1,4 @@
+//get a 4 dig if both dig0&1 and dig2&3 are same print 1 else 0
 #include <stdio.h>
 
 int main()

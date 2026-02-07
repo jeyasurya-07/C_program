@@ -1,3 +1,4 @@
+//check dig1>=dig0
 #include <stdio.h>
 
 int main()

@@ -1,3 +1,4 @@
+//check if dig 1 less than dig 0
 #include <stdio.h>
 
 int main()

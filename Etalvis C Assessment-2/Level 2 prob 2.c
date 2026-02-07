@@ -1,3 +1,4 @@
+// check if num != 50
 #include <stdio.h>
 
 int main()

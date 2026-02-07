@@ -1,3 +1,4 @@
+// check if num == 50 without if else,,, by storing relational operation in var return 1/0
 #include <stdio.h>
 
 int main()

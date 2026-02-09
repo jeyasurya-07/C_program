@@ -1,4 +1,4 @@
-//basic if else prgrm-7
+//basic if else prgrm-12
 #include <stdio.h>
 
 int main()

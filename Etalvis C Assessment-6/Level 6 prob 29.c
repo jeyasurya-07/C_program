@@ -3,7 +3,9 @@
 
 int main()
 {
-    int a,b,c,x=12,y=18,z=30,i,j=1,lcm=0,win;
+    int a,b,c,x,y,z,i,j,lcm=0,win;
+    printf("Enter value for A,B,c :");
+    scanf("%d %d %d",&x,&y,&z);
     a=x;
     b=y;
     c=z;
@@ -28,10 +30,10 @@ int main()
         
         
         
-    printf("Enter value for A, B and c:");
-    scanf("%d %d %d",&a,&b,&c);
+   
     win=1;
-    for(i=1;win!=0;i++)
+    i=1;
+    while(win!=0)
     {
         j=a*i;
         if(j%b==0)
@@ -42,6 +44,8 @@ int main()
                 win=0;
             }
         }
+        i++;
+
     }
     printf("%d",lcm);
 

@@ -1,3 +1,4 @@
+//print the hcf of two no's
 #include <stdio.h>
 
 int main()

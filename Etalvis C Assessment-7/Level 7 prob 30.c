@@ -13,14 +13,14 @@ int main()
 void disp_count_HCF2(int x,int y)
 {
     
-    int a=x,b=y,hcf,i;
+    int a=x,b=y,hcf=1,i;
 
     if(y>x)
     {
         a=y;
         b=x;
     }
-    for(i=2;i<b;i++)
+    for(i=2;i<=b;i++)
     {
         if(a%i==0)
         {

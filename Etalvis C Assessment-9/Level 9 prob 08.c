@@ -2,32 +2,26 @@
 
 int main()
 {
-    int arr[5],i,j,n;
+    int arr[5],b[5],i,j=0;
     printf("Enter the vaules :");
     for(i=0;i<5;i++)
     {
         scanf("%d",&arr[i]);
     }
-    n=5;
-    for(i=0;i<n;i++)
+    
+    for(i=0;i<5;i++)
     { 
-        if(arr[i]%2==1)
+        if(arr[i]%2==0)
         {
-            n--;
-            for(j=i+1;j<n;j++)
-            {
-            arr[i]=arr[j];
-            i++;
+           b[j]=arr[i];
+            j++;
+                
             }
         }
-        i=0;
         
-    }
-    i=0;
-    while(i<5)
+    for(i=0;i<j;i++)
     {
-        printf("%d ",arr[i]);
-        i++;
+        printf("%d ",b[i]);
     }
     
 }

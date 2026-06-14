@@ -1,77 +1,73 @@
+// multiplication using integer array "not an etalvis question"
 #include <stdio.h>
+#include <stdlib.h>
 
-void getnumbers(int *,int *);
-void multiplynumbers(int *,int *,int *);
-void print(int *);
-
-int main ()
-{
-    int number1[50],number2[50],result[51];
-     getnumbers(number1,number2);
-    multiplynumbers(number1,number2,result);
-   print(result);
+void getfun(int*,int*,int,int);
+void mulfun(int*,int*,int*,int,int);
+int main() {
+    int * arr1,*arr2,*res,n,m,i,start=0;
+    printf("Enter the number of values in arr1 : ");
+    scanf("%d",&n);
+    printf("Enter the number of values in arr2 : ");
+    scanf("%d",&m);
+    arr1=malloc(n*sizeof(int));
+    arr2=malloc(m*sizeof(int));
+    res=malloc((n+m)*(sizeof(int)));
+     getfun(arr1,arr2,n,m);
+     mulfun(arr1,arr2,res,n,m);
+     for(i=(n+m)-1;i>=0;i--)
+     {
+       if(start==0 && res[i]==0)
+       {
+         if(i==0 && res[i]==0)
+         printf("%d",res[i]);
+         
+       }
+       else{
+         start=1;
+    printf("%d ",res[i]);
 }
-void getnumbers( int * number1,int * number2)
-{
-    int i,size1,size2;
-    printf("enter the size : ");
-    scanf("%d",&size1);
-    printf("Enter the values for 1st array :");
-
-    for(i=size1-1;i>=0;i--)
-    {
-        scanf("%d",&number1[i]);
-    }
-    number1[size1]=-1;
-
-    printf("enter the size : ");
-    scanf("%d",&size2);
-    printf("Enter the values for 2nd array :");
-    for(i=size2-1;i>=0;i--)
-    {
-        scanf("%d",&number2[i]);
-    }
-    number2[size2]=-1;
+}
 }
 
-
-void multiplynumbers(int *number1, int * number2,int * result)
+void getfun(int * arr1,int *arr2,int n,int m)
 {
- 
-     int i,y,j,z,carry,zcarry=0,k;
-     for(int k = 0; k < 51; k++)
-     {
-      result[k] = 0;
-     }
-     for(j=0;number2[j]!=-1;j++)
-     {
-      i=0,carry=0;
-      for(i=0;number1[i]!=-1;i++)
-      {
-        y=number1[i]*number2[j]+carry;
-        z=y%10;
-        carry=y/10;
-        result[i+j]+=z;
-        if(result[i+j]>9)
+    int i;
+    printf("Enter the arr1 values:");
+    for(i=n-1;i>=0;i--)
+    {
+        scanf("%d",&arr1[i]);
+    }
+    printf("Enter the arr2 values:");
+    for(i=m-1;i>=0;i--)
+    {
+        scanf("%d",&arr2[i]);
+    }
+    
+}
+
+void mulfun(int * arr1,int * arr2,int * res,int n,int m)
+{
+    int i,j,carry=0;
+    for(i = 0; i < n + m; i++)
+        res[i] = 0;
+    for(j=0;j<m;j++)
+    {
+        for(i=0;i<n;i++)
         {
-         result[i+j+1] += result[i+j] / 10;
-         result[i+j] %= 10;
-
+            res[i+j]+=(arr2[j]*arr1[i]);
         }
-      }
-     }
-     result[i+j+1]=-1;
- 
-  
-
-
+    }
+    for(i=0;i<(n+m)-1;i++)
+    {
+        carry=res[i]/10;
+        res[i]=res[i]%10;
+        res[i+1]+=carry;
+    }
 }
 
-void print(int * result)
-{
-  int end = 0;
-while(result[end] != -1) end++;
 
-for(int i = end-1; i >= 0; i--)
-    printf("%d", result[i]);
-}
+
+
+
+

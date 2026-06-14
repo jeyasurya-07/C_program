@@ -1,4 +1,4 @@
-// Online C compiler to run C program online
+// multiplication upto 50 x 50
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

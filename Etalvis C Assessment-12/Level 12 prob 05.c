@@ -54,7 +54,7 @@ int mulfun(char * arr1,char * arr2,int * res)
     }
    // res[a+b-1]='\0';
     s=(len1+len2-1);
-    printf("%d\n",s);
+    
     
    
     for(i=0;i<s-1;i++)

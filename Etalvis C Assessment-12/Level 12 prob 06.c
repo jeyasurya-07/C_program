@@ -5,7 +5,7 @@
 void getnum(char *);
 void addfun(char *,char*,int *);
 void subfun(char *,char*,int *);
-//void mulfun(char *,char*,int *);
+void mulfun(char *,char*,int *);
 //void divfun(char *,char*,int *);
 
 char validateip(char *,char *);
@@ -55,7 +55,7 @@ else{
         break;
 
         case '*':
-       // mulfun(arr1,arr2,res);
+        mulfun(arr1,arr2,res);
         break;
 
         case '/':
@@ -256,4 +256,50 @@ void subfun(char*arr1,char*arr2,int *res)
 
     for(i=0;i<=len1;i++)
 res[i]=0;
+}
+
+void mulfun(char * arr1,char * arr2,int * res)
+{
+    int len1,len2,i,j,d1,d2,carry=0,a,b,count=0,start=0;
+    len1=strlen(arr1);
+    len2=strlen(arr2);
+    a=0;
+    for(j=len2-1;j>=0;j--)
+    {
+        d1=(arr2[j]-'0');
+        b=0;
+        for(i=len1-1;i>=0;i--)
+        {
+            d2=(arr1[i]-'0');
+            res[a+b]+=(d1*d2);
+            count=a+b;
+            b++;
+        }
+        a++;
+    }
+
+    for(i=0;i<count;i++)
+    {
+        carry=res[i]/10;
+        res[i]=res[i]%10;
+        res[i+1]+=carry;
+
+    }
+
+    for(i=len1+len2;i>=0;i--)
+    {
+        if(start==0 && res[i]==0)
+        {
+            start=0;
+        }
+        else{
+            start=1;
+            printf("%d",res[i]);
+        }
+    }
+    if(start==0)
+    printf("0");
+
+    for(i=0;i<=len1+len2;i++)
+    res[i]=0;
 }

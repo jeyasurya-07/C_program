@@ -1,12 +1,14 @@
+//calculator for big integers
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 void getnum(char *);
-void addfun(char *,char*,int *);
-void subfun(char *,char*,int *);
-void mulfun(char *,char*,int *);
-//void divfun(char *,char*,int *);
+int * addfun(char *,char*,int *);
+int * subfun(char *,char*,int *);
+int * mulfun(char *,char*,int *);
+int * divfun(char *,char*,int *);
+int compare(char *,char *);
 
 char validateip(char *,char *);
 
@@ -15,7 +17,7 @@ int main()
 {
     
     char * arr1,*arr2,ch;
-    int *res;
+    int *res,i,start=0;
     arr1=malloc(101*sizeof(char));
     arr2=malloc(50*sizeof(char));
     res=calloc(101,sizeof(int));
@@ -47,24 +49,48 @@ else{
     switch (ch)
     {
         case '+':
-        addfun(arr1,arr2,res);
+        res=addfun(arr1,arr2,res);
         break;
 
         case '-':
-        subfun(arr1,arr2,res);
+        res=subfun(arr1,arr2,res);
         break;
 
         case '*':
-        mulfun(arr1,arr2,res);
+        res=mulfun(arr1,arr2,res);
         break;
 
         case '/':
-        //divfun(arr1,arr2,res);
+        res=divfun(arr1,arr2,res);
         break;
 
         default:
         printf("input is in wrong format! try again...");
     }
+    printf("\nDEBUG: res array contents:\n");
+for(int dbg=100; dbg>=90; dbg--)
+{
+    printf("res[%d]=%d\n", dbg, res[dbg]);
+}
+    start=0;
+    for(i=100;i>=0;i--)
+    {
+        if(start==0 && res[i]==0)
+        {
+            start=0;
+        }
+        else{
+            if(res[i]==-1)
+            break;
+            start=1;
+            printf("%d",res[i]);
+        }
+    }
+    if(start==0)
+    printf("0");
+
+    for(i=0;i<=100;i++)
+    res[i]=0;
 }
     
 }
@@ -135,9 +161,11 @@ char validateip(char * arr1,char * arr2)
         }
     }
     return ch;
+    
+    
 }
 
-void addfun(char * arr1,char * arr2,int * res)
+int * addfun(char * arr1,char * arr2,int * res)
 {
 
     int len1,len2,carry=0,i,j,k,max,sum=0,start=0;
@@ -179,26 +207,11 @@ void addfun(char * arr1,char * arr2,int * res)
         else
         res[k]=carry;
     }
-    for(k=max;k>=0;k--)
-    {
-        if(res[k]==0 && start==0)
-        {
-            start=0;
-
-        }
-        else{
-            start=1;
-            printf("%d",res[k]);
-        }
-    }
-    if(start==0)
-    printf("0");
-for(i=0;i<=max;i++)
-res[i]=0;
+    return res;
 
 }
 
-void subfun(char*arr1,char*arr2,int *res)
+int * subfun(char*arr1,char*arr2,int *res)
 {
     int i,j,k,d1,d2,borrow=0,len1,len2,start=0;
     len1=strlen(arr1);
@@ -241,24 +254,10 @@ void subfun(char*arr1,char*arr2,int *res)
             }
         }
     }
-    for(i=len1;i>=0;i--){
-        if(res[i]==0 && start==0)
-        {
-            start=0;
-        }
-        else{
-            start=1;
-            printf("%d",res[i]);
-        }
-    }
-    if(start==0)
-    printf("0");
-
-    for(i=0;i<=len1;i++)
-res[i]=0;
+    return res;
 }
 
-void mulfun(char * arr1,char * arr2,int * res)
+int * mulfun(char * arr1,char * arr2,int * res)
 {
     int len1,len2,i,j,d1,d2,carry=0,a,b,count=0,start=0;
     len1=strlen(arr1);
@@ -285,21 +284,119 @@ void mulfun(char * arr1,char * arr2,int * res)
         res[i+1]+=carry;
 
     }
+return res;
+    
+} 
 
-    for(i=len1+len2;i>=0;i--)
-    {
-        if(start==0 && res[i]==0)
+
+int compare(char *arr1, char *arr2)
+{
+    int len1,len2,i;
+    len1=strlen(arr1);
+    len2=strlen(arr2);
+    if(len1>len2)
+    return 1;
+    if(len2>len1)
+    return -1;
+    else{
+        for(i=0;i<len1;i++)
         {
-            start=0;
+            if(arr1[i]-'0'>arr2[i]-'0')
+            return 1;
+             if(arr1[i]-'0'<arr2[i]-'0')
+            return -1;
         }
-        else{
-            start=1;
-            printf("%d",res[i]);
-        }
+        
+        return 0;
     }
-    if(start==0)
-    printf("0");
+}
 
-    for(i=0;i<=len1+len2;i++)
-    res[i]=0;
+
+
+int * divfun(char*arr1, char*arr2, int*res)
+{
+   int result[100];
+    
+    char temp[100];
+    for(int z=0;z<sizeof(temp);z++)
+    temp[z]='\0';
+    int count=0,m=100,a=0,t1=0,flag=0;
+    while(a<strlen(arr1))
+    {
+       t1=strlen(temp);
+        temp[t1] = arr1[a];
+        temp[t1+1] = '\0';
+       int p=0, q=0;
+    while(temp[p]=='0' && temp[p+1]!='\0')
+    {
+        p++;
+    }
+    while(temp[p]!='\0')
+    {
+        temp[q]=temp[p];
+        p++;
+        q++;
+    }
+    temp[q] = '\0';
+        
+    if(compare(temp, arr2) < 0)
+    {
+        a++;
+        if(flag)
+        res[m--]=0;
+        continue;
+    }
+           
+            while(compare(temp, arr2) >= 0)
+            {
+                
+                
+                 for(int z = 0; z < 100; z++)
+                    result[z] = 0;
+
+                subfun(temp,arr2,result);
+                
+
+                 for(int z=0;z<sizeof(temp);z++)
+                 temp[z]='\0';
+
+                
+                int start = 0;
+                int j = 0;
+                for(int k = 99; k >= 0; k--)
+                {
+                    if(start == 0 && result[k] == 0)
+                    {
+                        continue;  
+                    }
+                    else
+                    {
+                        start = 1;
+                        temp[j] = result[k] + '0';  
+                        j++;
+                    }
+                }
+                if(j==0)
+                {
+                    temp[j++]='0';
+                    temp[j]='\0';
+                }
+                else
+                temp[j] = '\0';
+                count++;
+                
+                
+            }
+            
+            res[m--]=count;
+            flag=1;
+            count=0;
+            a++;
+    }
+    res[m]=-1;
+    if(strlen(temp)!=0)
+    printf("remainder : %s\n",temp);
+    else
+    printf("remainder : 0\n");
+    return res;
 }

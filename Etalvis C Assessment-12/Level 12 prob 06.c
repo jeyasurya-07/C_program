@@ -67,11 +67,6 @@ else{
         default:
         printf("input is in wrong format! try again...");
     }
-    printf("\nDEBUG: res array contents:\n");
-for(int dbg=100; dbg>=90; dbg--)
-{
-    printf("res[%d]=%d\n", dbg, res[dbg]);
-}
     start=0;
     for(i=100;i>=0;i--)
     {

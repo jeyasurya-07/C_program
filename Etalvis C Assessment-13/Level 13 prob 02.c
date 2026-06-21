@@ -11,20 +11,13 @@ int main()
 {
     struct student*head=NULL;
     struct student*temp=NULL;
-    
-    while(1)
+    int i=0;
+    while(i<5)
     {
         struct student*new;
         new=malloc(sizeof(struct student));
         printf("Enter value:");
         scanf("%d",&new->id);
-        if(new->id==-1){
-            free(new);
-        break;
-        
-            
-        }
-        
         scanf("%d %d",&new->maths,&new->science);
         new->next=NULL;
         
@@ -35,6 +28,7 @@ int main()
         temp->next=new;
         
         temp=new;
+        i++;
     }
     
     struct student*ptr=head;

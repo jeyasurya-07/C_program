@@ -143,7 +143,7 @@ void display_fun()
     
     struct student*ptr=head;
     while(ptr!=NULL){
-        printf("id:%d\n%d\n%d\n--------------\n",ptr->id,ptr->maths,ptr->science);
+        printf("\nid:%d\n%d\n%d\n--------------\n",ptr->id,ptr->maths,ptr->science);
         ptr=ptr->next;
     }
    

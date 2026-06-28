@@ -122,11 +122,11 @@ void insertfun()
 void deletefun(){
     int id;
     printf("\nEnter the id to delete:\n");
-    scanf("%d",id);
+    scanf("%d",&id);
     struct student * del=NULL;
     struct student * temp=head;
-    struct student *prev=head;
-    struct student *next=head;
+    struct student *prev=NULL;
+    struct student *next=NULL;
     while(temp!=NULL)
     {
 
@@ -138,12 +138,13 @@ void deletefun(){
         temp=temp->next;
 
     }
-    if(prev==head)
+    if(prev==NULL)
     {
         head=next;
     }
+    else{
     prev->next=temp->next;
-
+    }
 }
 
 void displayfun()
